@@ -24,6 +24,7 @@ jettyRun.dependsOn jettyStop
 
 
 repositories {
+    mavenLocal()
     mavenCentral()
     jcenter()
 }
