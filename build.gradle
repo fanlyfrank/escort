@@ -1,0 +1,53 @@
+
+plugins {
+    id 'java'
+    id 'war'
+    id 'jetty'
+    id 'idea'
+    id 'eclipse'
+}
+
+
+jettyRun {
+    stopKey = "jettyStop"
+    stopPort = 9090
+    scanIntervalSeconds = 10
+}
+
+jettyStop {
+    stopKey = "jettyStop"
+    stopPort = 9090
+}
+
+jettyRun.dependsOn jettyStop
+
+
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+configurations.all {
+    exclude group: 'commons-logging', module: 'commons-logging'
+}
+
+dependencies {
+
+    compile 'org.springframework:spring-context:4.3.3.RELEASE'
+    compile 'org.springframework:spring-webmvc:4.3.3.RELEASE'
+    compile 'org.springframework.data:spring-data-mongodb:1.9.3.RELEASE'
+
+    compile 'javax.inject:javax.inject:1'
+    compileOnly 'javax.servlet:javax.servlet-api:3.1.0'
+
+
+    compile 'com.fasterxml.jackson.core:jackson-databind:2.6.6'
+    compile 'com.fasterxml.jackson.dataformat:jackson-dataformat-yaml:2.6.6'
+
+    compile 'org.slf4j:slf4j-api:1.7.21'
+    compile 'ch.qos.logback:logback-classic:1.1.7'
+
+
+    testCompile 'junit:junit:4.12'
+}
