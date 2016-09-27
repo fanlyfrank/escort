@@ -7,7 +7,11 @@ import java.util.*;
  * @author trgoofi
  */
 public class Page<T> implements Iterable<T>, Serializable {
-    private int page = 1;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private int page = 1;
     private int size = 10;
     private long total;
     private Collection<T> contents = Collections.emptyList();
@@ -65,7 +69,7 @@ public class Page<T> implements Iterable<T>, Serializable {
         this.contents = contents;
     }
 
-    public Page param(String key, Object value) {
+    public Page<T> param(String key, Object value) {
         params.put(key, value);
         return this;
     }
